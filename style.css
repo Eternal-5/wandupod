@@ -2,73 +2,86 @@
 @import url('https://fonts.googleapis.com/css2?family=Dongle:wght@400;700&display=swap');
 
 /* 기본 글꼴 · 색상 */
-body{
-  font-family:'Dongle',sans-serif;
-  background:#f4fdf6;
-  margin:0;padding:0;color:#2e3e2e;
+body {
+  font-family: 'Dongle', sans-serif;
+  background: #f4fdf6;
+  margin: 0;
+  padding: 0;
+  color: #2e3e2e;
 }
 
-/* 레이아웃 */
-header{text-align:center;padding:2rem 1rem;}
-h1{margin:0;font-size:3rem;color:#3b6040;}
-h2{margin:.6rem 0 1.4rem;font-size:1.5rem;}
-
-.menu{max-width:900px;margin:0 auto;padding:1rem;
-      display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));}
-.card {
-  display: block; /* ← 요 줄만 추가! */
-  background:#fff;
-  border-radius:12px;
-  padding:1.2rem;
-  text-align:center;
-  box-shadow:0 2px 6px rgba(0,0,0,.08);
-  transition:.15s transform;
+/* 헤더 */
+header {
+  text-align: center;
+  padding: 2rem 1rem;
 }
-.card:hover{transform:translateY(-4px);}
-a{text-decoration:none;color:inherit}
-footer{text-align:center;font-size:.9rem;padding:2rem 0;color:#666}
-/* ───── 툴팁 스타일 ───── */
+h1 {
+  margin: 0;
+  font-size: 3rem;
+  color: #3b6040;
+}
+h2 {
+  margin: 0.6rem 0 1.4rem;
+  font-size: 1.5rem;
+}
+
+/* 메뉴 카드 그리드 */
+.menu {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
 .card {
+  display: block;
   position: relative;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.4rem 1rem;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.15s;
+}
+.card:hover {
+  transform: translateY(-4px);
 }
 
-.card .tooltip {
+/* 링크 */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 툴팁 */
+.tooltip {
   visibility: hidden;
   opacity: 0;
   position: absolute;
   left: 50%;
   bottom: 110%;
   transform: translateX(-50%);
-  max-width: 220px;
   background: #3b6040;
   color: #fff;
-  font-size: 0.85rem;
-  padding: 0.6rem 0.8rem;
+  font-size: 0.9rem;
+  padding: 0.5rem 0.8rem;
   border-radius: 8px;
-  line-height: 1.4;
-  white-space: pre-wrap;
-  pointer-events: none;
-  transition: opacity 0.25s ease-in-out;
+  white-space: nowrap;
+  transition: opacity 0.2s;
   z-index: 10;
 }
-
-.card .tooltip::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 8px solid transparent;
-  border-top-color: #3b6040;
-}
-
-.card:hover .tooltip {
+.card:hover .tooltip,
+.card:focus .tooltip,
+.card:active .tooltip {
   visibility: visible;
   opacity: 1;
 }
 
-/* 모바일 탭 대응 */
-.card.show .tooltip {
-  visibility: visible;
-  opacity: 1;
+/* 푸터 */
+footer {
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 2rem 0;
+  color: #666;
 }
