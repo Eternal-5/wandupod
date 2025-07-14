@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>깍지 속 기록들 - 완두콩깍지</title>
+<link rel="stylesheet" href="style.css"/></head>
+<body>
+<header><h1>깍지 속 기록들</h1></header>
+<section style="max-width:900px;margin:0 auto;padding:2rem;">
+<p>이 페이지는 <strong>깍지 속 기록들</strong> 콘텐츠를 채우기 위한 템플릿입니다.</p>
+<p>HTML을 수정하여 실제 내용을 넣어보세요!</p>
+</section>
+<footer><a href="index.html">← 메인으로</a></footer>
+<script>document.querySelectorAll('.card').forEach(card=>{
+  card.addEventListener('click',e=>{
+    if(card.classList.contains('show')){card.classList.remove('show');return;}
+    document.querySelectorAll('.card.show').forEach(c=>c.classList.remove('show'));
+    card.classList.add('show');
+    e.preventDefault();
+  });
+});</script>
+</body></html>
