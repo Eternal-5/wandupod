@@ -1,66 +1,39 @@
-@import url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2301@1.1/Cafe24Ssurround.woff2') format('woff2');
+/* ---- 1) 손글씨 폰트 불러오기 ---- */
+@import url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2107@1.0/Cafe24Oneprettynight.woff') format('woff');
 
-@font-face {
-  font-family: 'Cafe24Ssurround';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2301@1.1/Cafe24Ssurround.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
+/* ---- 2) 기본 바디 스타일 ---- */
+body{
+  font-family:'Cafe24Oneprettynight',cursive;
+  background:#f4fdf6;
+  margin:0;
+  padding:0;
+  color:#2e3e2e;
 }
 
-body {
-  font-family: 'Cafe24Ssurround', cursive;
-  background: #f4fdf6;
-  margin: 0;
-  padding: 0;
-  color: #2e3e2e;
+/* ---- 3) 레이아웃 핵심 ---- */
+.menu{
+  max-width:900px;
+  margin:0 auto;
+  padding:1rem;
+  display:grid;
+  gap:1rem;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
 }
 
-header {
-  text-align: center;
-  padding: 2rem 1rem;
+.card{
+  background:#fff;
+  border-radius:12px;
+  padding:1.2rem;
+  text-align:center;
+  box-shadow:0 2px 6px rgba(0,0,0,.08);
+  transition:.15s transform;
 }
+.card:hover{transform:translateY(-4px);}
 
-h1 {
-  font-size: 2.8rem;
-  margin: 0;
-  color: #3b6040;
-}
+a{color:inherit;text-decoration:none;}
 
-h2 {
-  font-size: 1.5rem;
-  margin: 0.5rem 0 1.5rem;
-}
+header{text-align:center;padding:2rem 1rem;}
+h1{margin:0;font-size:2.8rem;color:#3b6040;}
+h2{margin:.5rem 0 1.5rem;font-size:1.5rem;}
 
-.menu {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 1rem;
-}
-
-.card {
-  background: white;
-  border-radius: 12px;
-  padding: 1.2rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  text-align: center;
-  transition: transform 0.15s;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-}
-
-a {
-  text-decoration: none;
-  color: #2e3e2e;
-}
-
-footer {
-  text-align: center;
-  font-size: 0.9rem;
-  padding: 2rem 0;
-  color: #666;
-}
+footer{text-align:center;font-size:.9rem;padding:2rem 0;color:#666;}
