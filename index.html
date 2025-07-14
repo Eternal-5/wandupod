@@ -13,59 +13,43 @@
     <h2>SS501 팬들을 위한 복작복작 깍지</h2>
   </header>
 
-<section class="menu">
-  <a class="card" href="#">
-    <span>콩 한 톨 감상기</span>
-    <span class="tooltip">공연 감상 후기를 남기는 공간이에요</span>
-  </a>
-  <a class="card" href="#">
-    <span>깍지 속 기록들</span>
-    <span class="tooltip">이미지, 영상, 기사 등 자료를 공유해요</span>
-  </a>
-  <a class="card" href="#">
-    <span>콩깍지 레이더</span>
-    <span class="tooltip">찾고 싶은 자료를 요청하는 공간이에요</span>
-  </a>
-  <a class="card" href="#">
-    <span>완두밭 이야기</span>
-    <span class="tooltip">팬으로서의 추억과 마음을 나눠요</span>
-  </a>
-  <a class="card" href="#">
-    <span>톡톡, 콩알말</span>
-    <span class="tooltip">자유롭게 소통하고 이야기 나누어요</span>
-  </a>
-  <a class="card" href="#">
-    <span>깍지 공지판</span>
-    <span class="tooltip">팬페이지의 공지사항을 모아둔 곳이에요</span>
-  </a>
-  <a class="card" href="#">
-    <span>콩깍지 우체통</span>
-    <span class="tooltip">건의나 궁금한 점을 익명으로 남겨주세요</span>
-  </a>
-  <a class="card" href="#">
-    <span>다섯별 아카이브</span>
-    <span class="tooltip">SS501의 시간들을 함께 모아가는 조용한 아카이브 공간입니다</span>
-  </a>
-</section>
-
-
+  <section class="menu">
+    <a class="card" href="#">
+      <span>콩 한 톨 감상기</span>
+      <span class="tooltip">공연 감상 후기를 남기는 공간이에요</span>
+    </a>
+    <a class="card" href="#">
+      <span>깍지 속 기록들</span>
+      <span class="tooltip">이미지, 영상, 기사 등 자료를 공유해요</span>
+    </a>
+    <a class="card" href="#">
+      <span>콩깍지 레이더</span>
+      <span class="tooltip">찾고 싶은 자료를 요청하는 공간이에요</span>
+    </a>
+    <a class="card" href="#">
+      <span>완두밭 이야기</span>
+      <span class="tooltip">팬으로서의 추억과 마음을 나눠요</span>
+    </a>
+    <a class="card" href="#">
+      <span>톡톡, 콩알말</span>
+      <span class="tooltip">자유롭게 소통하고 이야기 나누어요</span>
+    </a>
+    <a class="card" href="#">
+      <span>깍지 공지판</span>
+      <span class="tooltip">팬페이지의 공지사항을 모아둔 곳이에요</span>
+    </a>
+    <a class="card" href="#">
+      <span>콩깍지 우체통</span>
+      <span class="tooltip">건의나 궁금한 점을 익명으로 남겨주세요</span>
+    </a>
+    <a class="card" href="#">
+      <span>다섯 별 아카이브</span>
+      <span class="tooltip">SS501의 시간들을 함께 모아가는 조용한 아카이브 공간입니다</span>
+    </a>
+  </section>
 
   <footer>
     wandupod.com | 완두콩깍지.com
   </footer>
-  <script>
-document.querySelectorAll('.card').forEach(card => {
-  card.addEventListener('click', e => {
-    if (card.classList.contains('show')) {
-      card.classList.remove('show');
-      return;
-    }
-    document.querySelectorAll('.card.show').forEach(c => c.classList.remove('show'));
-    card.classList.add('show');
-    e.preventDefault(); // 링크 이동 방지
-  });
-});
-</script>
-
 </body>
 </html>
