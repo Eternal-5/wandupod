@@ -1,0 +1,25 @@
+
+@import url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/Cafe24Ssurround.css');
+
+body {
+    font-family: 'Cafe24Ssurround', cursive;
+    background-color: #f7fff7;
+    color: #2c3e50;
+    margin: 2rem auto;
+    max-width: 800px;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: 'Cafe24Ssurround', cursive;
+    color: #2f684e;
+}
+
+a {
+    color: #347768;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
