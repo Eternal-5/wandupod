@@ -53,5 +53,19 @@
   <footer>
     wandupod.com | 완두콩깍지.com
   </footer>
+  <script>
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('click', e => {
+    if (card.classList.contains('show')) {
+      card.classList.remove('show');
+      return;
+    }
+    document.querySelectorAll('.card.show').forEach(c => c.classList.remove('show'));
+    card.classList.add('show');
+    e.preventDefault(); // 링크 이동 방지
+  });
+});
+</script>
+
 </body>
 </html>
