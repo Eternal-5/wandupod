@@ -1,10 +1,17 @@
+/* ────────────────────────────────
+   1. 손글씨 폰트 로드 (Cafe24 Oneprettynight)
+   ──────────────────────────────── */
 @font-face {
   font-family: 'Cafe24Oneprettynight';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2107@1.0/Cafe24Oneprettynight.woff') format('woff');
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Cafe24Oneprettynight.woff')
+       format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
+/* ────────────────────────────────
+   2. 기본 배경·글꼴
+   ──────────────────────────────── */
 body {
   font-family: 'Cafe24Oneprettynight', cursive;
   background: #f4fdf6;
@@ -13,52 +20,56 @@ body {
   color: #2e3e2e;
 }
 
+/* ────────────────────────────────
+   3. 헤더
+   ──────────────────────────────── */
 header {
   text-align: center;
   padding: 2rem 1rem;
 }
-
 h1 {
   font-size: 2.8rem;
   margin: 0;
   color: #3b6040;
 }
-
 h2 {
   font-size: 1.5rem;
-  margin: 0.5rem 0 1.5rem;
+  margin: 0.6rem 0 1.5rem;
 }
 
+/* ────────────────────────────────
+   4. 카드 메뉴 레이아웃
+   ──────────────────────────────── */
 .menu {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
   max-width: 900px;
   margin: 0 auto;
   padding: 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
-
 .card {
-  background: white;
+  background: #ffffff;
   border-radius: 12px;
   padding: 1.2rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   text-align: center;
-  transition: transform 0.15s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.15s ease;
 }
-
 .card:hover {
   transform: translateY(-4px);
 }
-
 a {
   text-decoration: none;
-  color: #2e3e2e;
+  color: inherit;
 }
 
+/* ────────────────────────────────
+   5. 푸터
+   ──────────────────────────────── */
 footer {
   text-align: center;
   font-size: 0.9rem;
   padding: 2rem 0;
-  color: #666;
+  color: #666666;
 }
