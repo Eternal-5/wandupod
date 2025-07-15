@@ -30,3 +30,16 @@ footer{text-align:center;font-size:.9rem;padding:2rem 0;color:#666}
 }
 .card:hover .tooltip{visibility:visible;opacity:1;}
 .card.show .tooltip{visibility:visible;opacity:1;}
+/* 네비게이션 링크 스타일 */
+nav .nav {
+  padding: .4rem .9rem;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #2e3e2e;
+  background: #e9fcee;
+  transition: background .15s, transform .15s;
+}
+nav .nav:hover {
+  background: #c3f5d0;
+  transform: translateY(-2px);
+}
