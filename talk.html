@@ -1,61 +1,112 @@
-<script>
-  // ① Firebase 설정
-  const firebaseConfig = {
-    apiKey: "AIzaSyCpUti20pb1a5qAMvCqWh3FJpn7MDDb8",
-    authDomain: "wandupod.firebaseapp.com",
-    projectId: "wandupod",
-    storageBucket: "wandupod.appspot.com",
-    messagingSenderId: "896164102070",
-    appId: "1:896164102070:web:6c3a477d1abcbb5c040b17",
-    measurementId: "G-VEN0MHF4HR"
-  };
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>톡톡, 콩알말 – 완두콩깍지</title>
+  <link rel="stylesheet" href="style.css" />
 
-  // ② Netlify Identity 초기화
-  netlifyIdentity.init();
-  const $login  = document.getElementById('login');
-  const $logout = document.getElementById('logout');
-  const $send   = document.getElementById('send');
-  const $chat   = document.getElementById('chat');
-  const $msg    = document.getElementById('msg');
-  let   nick    = '';
+  <!-- Firebase SDK (compat) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
-  $login.onclick  = () => netlifyIdentity.open('login');
-  $logout.onclick = () => netlifyIdentity.logout();
+  <!-- Netlify Identity 위젯 -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-  netlifyIdentity.on('login', user => {
-    nick = '콩알' + Math.floor(Math.random() * 9000 + 1000);
-    $login.style.display  = 'none';
-    $logout.style.display = 'inline';
-    $send.style.display   = 'flex';
-    netlifyIdentity.close();
-  });
+  <style>
+    body { max-width: 900px; margin: 0 auto; padding: 2rem; font-family: sans-serif; }
+    h1 { text-align: center }
+    #chat { list-style: none; padding: 0; margin: 1.5rem 0; max-height: 400px; overflow-y: auto; }
+    #chat li { margin: .4rem 0; padding: .5rem .8rem; background: #e7fbe7; border-radius: 8px; }
+    #send { display: none; gap: .5rem; margin-top: 1rem; }
+    #send input { flex: 1; padding: .6rem; border-radius: 6px; border: 1px solid #ccc; }
+    #send button, #login, #logout {
+      padding: .6rem 1rem;
+      border: none;
+      border-radius: 6px;
+      background: #3b6040;
+      color: #fff;
+      cursor: pointer;
+    }
+    #logout { display: none; }
+  </style>
+</head>
+<body>
+  <h1>톡톡, 콩알말</h1>
+  <p>실시간으로 소통하는 공간입니다. <strong>로그인하면 메시지를 작성</strong>할 수 있어요!</p>
 
-  netlifyIdentity.on('logout', () => location.reload());
+  <!-- 로그인/로그아웃 버튼 -->
+  <button id="login">🔐 로그인</button>
+  <button id="logout">로그아웃</button>
 
-  // ③ 실시간 메시지 표시
-  db.collection('messages').orderBy('timestamp')
-    .onSnapshot(snap => {
-      $chat.innerHTML = '';
-      snap.forEach(doc => {
-        const d = doc.data();
-        const li = document.createElement('li');
-        li.textContent = `${d.userId} : ${d.message}`;
-        $chat.appendChild(li);
+  <!-- 메시지 목록 -->
+  <ul id="chat"></ul>
+
+  <!-- 메시지 입력 -->
+  <form id="send">
+    <input id="msg" placeholder="메시지를 입력하세요" required />
+    <button>전송</button>
+  </form>
+
+  <script>
+    // ① Firebase 설정
+    const firebaseConfig = {
+      apiKey: "AIzaSyCpUti20pb1a5qAMvCqWh3FJpn7MDDb8",
+      authDomain: "wandupod.firebaseapp.com",
+      projectId: "wandupod",
+      storageBucket: "wandupod.appspot.com",
+      messagingSenderId: "896164102070",
+      appId: "1:896164102070:web:6c3a477d1abcbb5c040b17"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // ② Netlify Identity 초기화
+    netlifyIdentity.init();
+    const $login  = document.getElementById('login');
+    const $logout = document.getElementById('logout');
+    const $send   = document.getElementById('send');
+    const $chat   = document.getElementById('chat');
+    const $msg    = document.getElementById('msg');
+    let   nick    = '';
+
+    $login.onclick  = () => netlifyIdentity.open('login');
+    $logout.onclick = () => netlifyIdentity.logout();
+
+    netlifyIdentity.on('login', user => {
+      nick = '콩알' + Math.floor(Math.random() * 9000 + 1000);
+      $login.style.display = 'none';
+      $logout.style.display = 'inline';
+      $send.style.display = 'flex';
+      netlifyIdentity.close();
+    });
+
+    netlifyIdentity.on('logout', () => location.reload());
+
+    // ③ 실시간 메시지 표시
+    db.collection('messages').orderBy('timestamp')
+      .onSnapshot(snapshot => {
+        $chat.innerHTML = '';
+        snapshot.forEach(doc => {
+          const d = doc.data();
+          const li = document.createElement('li');
+          li.textContent = `${d.userId} : ${d.message}`;
+          $chat.appendChild(li);
+        });
+        $chat.scrollTop = $chat.scrollHeight;
       });
-      $chat.scrollTop = $chat.scrollHeight;
-    });
 
-  // ④ 메시지 전송
-  $send.addEventListener('submit', e => {
-    e.preventDefault();
-    if (!$msg.value.trim()) return;
-    db.collection('messages').add({
-      userId: nick,
-      message: $msg.value.trim(),
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    // ④ 메시지 전송
+    $send.addEventListener('submit', e => {
+      e.preventDefault();
+      if (!$msg.value.trim()) return;
+      db.collection('messages').add({
+        userId: nick,
+        message: $msg.value.trim(),
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      $msg.value = '';
     });
-    $msg.value = '';
-  });
-</script>
+  </script>
+</body>
+</html>
