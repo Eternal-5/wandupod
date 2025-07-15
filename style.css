@@ -7,7 +7,18 @@ body{
   margin:0;padding:0;color:#2e3e2e;
 }
 header{text-align:center;padding:2rem 1rem;}
-h1{margin:0;font-size:3rem;color:#3b6040;}
+h1{
+  margin:0 0 1rem;       /* ← 아래여백을 기존 1.4 rem → 1 rem 으로 살짝 줄임 */
+  font-size:3rem;
+  color:#3b6040;
+}
+
+/* 페이지 설명 문구 (헤더 바로 아래 p) */
+header + p{
+  margin:0 0 1.2rem;     /* 위여백 0, 아래여백만 1.2 rem */
+  font-size:1.3rem;      /* 필요하면 글꼴 크기도 맞춰주기 */
+  text-align:center;
+}
 h2{margin:.6rem 0 1.4rem;font-size:1.5rem;}
 
 .menu{max-width:900px;margin:0 auto;padding:1rem;
