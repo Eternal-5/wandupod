@@ -4,107 +4,97 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>톡톡, 콩알말 – 완두콩깍지</title>
-
-  <!-- 기본 스타일(네가 쓰는 style.css) -->
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Firebase SDK - compat 버전 -->
+  <!-- Firebase SDK (compat) -->
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
   <!-- Netlify Identity 위젯 -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-  <!-- 아주 간단한 채팅용 내부 스타일 -->
   <style>
-    body          { max-width:900px;margin:0 auto;padding:2rem }
-    h1            { text-align:center }
-    #chat-list    { list-style:none;padding:0;margin:1.5rem 0;max-height:380px;overflow-y:auto }
-    #chat-list li { margin:.4rem 0;padding:.5rem .8rem;background:#e7fbe7;border-radius:8px }
-    #sendForm     { display:none;gap:.5rem;margin-top:1rem }
-    #sendForm input{ flex:1;padding:.6rem;border-radius:6px;border:1px solid #ccc }
-    #sendForm button,
-    #loginBtn,
-    #logoutBtn    { padding:.6rem 1rem;border:none;border-radius:6px;background:#3b6040;color:#fff;cursor:pointer }
-    #logoutBtn    { display:none }
+    body{max-width:900px;margin:0 auto;padding:2rem}
+    h1{text-align:center}
+    #chat{list-style:none;padding:0;margin:1.5rem 0;max-height:380px;overflow-y:auto}
+    #chat li{margin:.4rem 0;padding:.5rem .8rem;background:#e7fbe7;border-radius:8px}
+    #send{display:none;gap:.5rem}
+    #send input{flex:1;padding:.6rem;border-radius:6px;border:1px solid #ccc}
+    #send button,#login,#logout{padding:.6rem 1rem;border:none;border-radius:6px;background:#3b6040;color:#fff;cursor:pointer}
+    #logout{display:none}
   </style>
 </head>
 <body>
   <h1>톡톡, 콩알말</h1>
-  <p>실시간으로 소통하는 공간입니다. 로그인하면 메시지를 남길 수 있어요!</p>
+  <p>실시간으로 소통하는 공간입니다. <strong>로그인하면 메시지를 작성</strong>할 수 있어요!</p>
 
   <!-- 로그인/로그아웃 버튼 -->
-  <button id="loginBtn">🔐 로그인</button>
-  <button id="logoutBtn">로그아웃</button>
+  <button id="login">🔐 로그인</button>
+  <button id="logout">로그아웃</button>
 
-  <!-- 채팅 메시지 영역 -->
-  <ul id="chat-list"></ul>
+  <!-- 메시지 목록 -->
+  <ul id="chat"></ul>
 
-  <!-- 메시지 입력창 -->
-  <form id="sendForm">
-    <input id="messageInput" type="text" placeholder="메시지를 입력하세요" required />
-    <button type="submit">전송</button>
+  <!-- 메시지 입력 -->
+  <form id="send">
+    <input id="msg" placeholder="메시지를 입력하세요" required />
+    <button>전송</button>
   </form>
 
-  <!-- Firebase + Identity + 채팅 로직 -->
   <script>
-    /* 1) Firebase 설정 객체 붙여넣기 */
-    const firebaseConfig = YOUR_CONFIG_HERE;  /* ← 복사한 설정 객체로 교체! */
+  /* ① Firebase 설정 */
+  const firebaseConfig = YOUR_FIREBASE_CONFIG;     // ← 붙여넣기!
 
-    /* 2) Firebase 초기화 */
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
 
-    /* 3) Netlify Identity init */
-    netlifyIdentity.init();
+  /* ② Netlify Identity 초기화 */
+  netlifyIdentity.init();
+  const $login  = document.getElementById('login');
+  const $logout = document.getElementById('logout');
+  const $send   = document.getElementById('send');
+  const $chat   = document.getElementById('chat');
+  const $msg    = document.getElementById('msg');
+  let   nick    = '';          // 콩알 닉네임
 
-    /* 요소 참조 */
-    const chatList  = document.getElementById('chat-list');
-    const loginBtn  = document.getElementById('loginBtn');
-    const logoutBtn = document.getElementById('logoutBtn');
-    const sendForm  = document.getElementById('sendForm');
-    const msgInput  = document.getElementById('messageInput');
+  // 로그인/로그아웃 버튼
+  $login.onclick  = () => netlifyIdentity.open('login');
+  $logout.onclick = () => netlifyIdentity.logout();
 
-    let userId = '';   // 로그인 후 콩알 닉네임
+  // 로그인 후 UI 토글
+  netlifyIdentity.on('login', user=>{
+    nick = '콩알' + Math.floor(Math.random()*9000+1000);
+    $login.style.display  = 'none';
+    $logout.style.display = 'inline';
+    $send.style.display   = 'flex';
+    netlifyIdentity.close();
+  });
+  netlifyIdentity.on('logout', ()=>location.reload());
 
-    /* 4) 로그인/로그아웃 버튼 동작 */
-    loginBtn.onclick  = () => netlifyIdentity.open('login');
-    logoutBtn.onclick = () => netlifyIdentity.logout();
-
-    netlifyIdentity.on('login', user => {
-      userId = '콩알' + Math.floor(Math.random()*9000 + 1000);   // 콩알1234
-      loginBtn.style.display  = 'none';
-      logoutBtn.style.display = 'inline';
-      sendForm.style.display  = 'flex';
+  /* ③ 실시간 메시지 표시 */
+  db.collection('messages').orderBy('timestamp')
+    .onSnapshot(snap=>{
+      $chat.innerHTML='';
+      snap.forEach(doc=>{
+        const d=doc.data();
+        const li=document.createElement('li');
+        li.textContent=`${d.userId} : ${d.message}`;
+        $chat.appendChild(li);
+      });
+      $chat.scrollTop=$chat.scrollHeight;
     });
 
-    netlifyIdentity.on('logout', () => location.reload());
-
-    /* 5) 실시간 메시지 출력 */
-    db.collection('messages').orderBy('timestamp')
-      .onSnapshot(snap => {
-        chatList.innerHTML = '';
-        snap.forEach(doc => {
-          const d  = doc.data();
-          const li = document.createElement('li');
-          li.textContent = `${d.userId} : ${d.message}`;
-          chatList.appendChild(li);
-        });
-        chatList.scrollTop = chatList.scrollHeight;
-      });
-
-    /* 6) 메시지 전송 */
-    sendForm.addEventListener('submit', e => {
-      e.preventDefault();
-      const text = msgInput.value.trim();
-      if(!text) return;
-      db.collection('messages').add({
-        userId,
-        message: text,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-      });
-      msgInput.value = '';
+  /* ④ 메시지 전송 */
+  $send.addEventListener('submit',e=>{
+    e.preventDefault();
+    if(!$msg.value.trim()) return;
+    db.collection('messages').add({
+      userId:nick,
+      message:$msg.value.trim(),
+      timestamp:firebase.firestore.FieldValue.serverTimestamp()
     });
+    $msg.value='';
+  });
   </script>
 </body>
 </html>
