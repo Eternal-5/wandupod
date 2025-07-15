@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>톡톡, 콩알말 - 완두콩깍지</title>
   <link rel="stylesheet" href="style.css"/>
-  
-  <!-- Firebase App (필수) -->
+
+  <!-- Firebase v8(compat) SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
-  <!-- Firestore SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
 </head>
 <body>
@@ -16,41 +15,39 @@
 
   <section style="max-width:900px;margin:0 auto;padding:2rem;">
     <p><strong>톡톡, 콩알말</strong>은 실시간으로 소통하는 공간입니다!</p>
-    <p>아래에 채팅 메시지가 표시돼요 💬</p>
-
     <ul id="chat-list"></ul>
   </section>
 
   <footer><a href="index.html">← 메인으로</a></footer>
 
-  <!-- ✅ Firebase 설정 및 메시지 출력 -->
   <script>
+    /* ✅ Firebase 설정 – measurementId는 빼도 OK */
     const firebaseConfig = {
-      apiKey: "너의-apiKey",
-      authDomain: "너의-authDomain",
+      apiKey: "AIzaSyCqPtiJ2Obpp1a5gAMvCqWh3FJpn7MDDb8",
+      authDomain: "wandupod.firebaseapp.com",
       projectId: "wandupod",
-      storageBucket: "너의-storageBucket",
-      messagingSenderId: "너의-senderId",
-      appId: "너의-appId"
+      storageBucket: "wandupod.appspot.com",
+      messagingSenderId: "896164102070",
+      appId: "1:896164102070:web:6c3a477d1abcbb5c040b17"
     };
 
-    // Firebase 초기화
-    const app = firebase.initializeApp(firebaseConfig);
+    // 초기화 (v8)
+    firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // 실시간 채팅 메시지 읽기
+    // 실시간 메시지 읽기
     const messageList = document.getElementById("chat-list");
 
-    db.collection("messages")
-      .orderBy("timestamp")
-      .onSnapshot((snapshot) => {
+    db.collection("messages").orderBy("timestamp")
+      .onSnapshot(snap => {
         messageList.innerHTML = "";
-        snapshot.forEach((doc) => {
-          const data = doc.data();
-          const item = document.createElement("li");
-          item.textContent = `${data.userId} : ${data.message}`;
-          messageList.appendChild(item);
+        snap.forEach(doc => {
+          const d = doc.data();
+          const li = document.createElement("li");
+          li.textContent = `${d.userId} : ${d.message}`;
+          messageList.appendChild(li);
         });
+        messageList.scrollTop = messageList.scrollHeight;
       });
   </script>
 </body>
