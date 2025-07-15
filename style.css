@@ -1,46 +1,117 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Dongle:wght@400;700&display=swap');
 
-body{
-  font-family:'Dongle',sans-serif;
-  background:#f4fdf6;
-  margin:0;padding:0;color:#2e3e2e;
+body {
+  font-family: 'Dongle', sans-serif;
+  background: #f4fdf6;
+  margin: 0; padding: 0;
+  color: #2e3e2e;
 }
-header{text-align:center;padding:2rem 1rem;}
-h1{
-  margin:0 0 1rem;       /* ← 아래여백을 기존 1.4 rem → 1 rem 으로 살짝 줄임 */
-  font-size:3rem;
-  color:#3b6040;
+
+header {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+h1 {
+  margin: 0 0 1rem;
+  font-size: 3rem;
+  color: #3b6040;
 }
 
 /* 페이지 설명 문구 (헤더 바로 아래 p) */
-header + p{
-  margin:0 0 1.2rem;     /* 위여백 0, 아래여백만 1.2 rem */
-  font-size:1.3rem;      /* 필요하면 글꼴 크기도 맞춰주기 */
-  text-align:center;
+header + p {
+  margin: 0 0 1.2rem;
+  font-size: 1.3rem;
+  text-align: center;
 }
-h2{margin:.6rem 0 1.4rem;font-size:1.5rem;}
 
-.menu{max-width:900px;margin:0 auto;padding:1rem;
-      display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));}
-.card{display:block;position:relative;background:#fff;border-radius:12px;padding:1.2rem;text-align:center;
-      box-shadow:0 2px 6px rgba(0,0,0,.08);transition:.15s transform;}
-.card:hover{transform:translateY(-4px);}
-a{text-decoration:none;color:inherit}
-footer{text-align:center;font-size:.9rem;padding:2rem 0;color:#666}
+/* 게시판일 경우 여백 줄이기 */
+body.board header {
+  padding: 0.4rem 0 0.2rem;
+}
+body.board h1 {
+  margin: 0 0 .4rem;
+  font-size: 2.8rem;
+}
+body.board header + p {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+h2 {
+  margin: .6rem 0 1.4rem;
+  font-size: 1.5rem;
+}
+
+.menu {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.card {
+  display: block;
+  position: relative;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.2rem;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+  transition: .15s transform;
+}
+.card:hover {
+  transform: translateY(-4px);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+footer {
+  text-align: center;
+  font-size: .9rem;
+  padding: 2rem 0;
+  color: #666;
+}
 
 /* tooltip */
-.card .tooltip{
-  visibility:hidden;opacity:0;position:absolute;left:50%;bottom:110%;transform:translateX(-50%);
-  max-width:220px;background:#3b6040;color:#fff;font-size:.85rem;padding:.6rem .8rem;border-radius:8px;
-  white-space:pre-wrap;pointer-events:none;transition:opacity .25s;z-index:10;
+.card .tooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  left: 50%;
+  bottom: 110%;
+  transform: translateX(-50%);
+  max-width: 220px;
+  background: #3b6040;
+  color: #fff;
+  font-size: .85rem;
+  padding: .6rem .8rem;
+  border-radius: 8px;
+  white-space: pre-wrap;
+  pointer-events: none;
+  transition: opacity .25s;
+  z-index: 10;
 }
-.card .tooltip::after{
-  content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);
-  border:8px solid transparent;border-top-color:#3b6040;
+.card .tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 8px solid transparent;
+  border-top-color: #3b6040;
 }
-.card:hover .tooltip{visibility:visible;opacity:1;}
-.card.show .tooltip{visibility:visible;opacity:1;}
+.card:hover .tooltip,
+.card.show .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
 /* 네비게이션 링크 스타일 */
 nav .nav {
   padding: .4rem .9rem;
@@ -52,14 +123,5 @@ nav .nav {
 }
 nav .nav:hover {
   background: #c3f5d0;
-
-  body.board header {
-  padding: 1.2rem 1rem; /* 게시판에서는 상하 여백 줄이기 */
-}
-
-body.board header + p {
-  margin-bottom: 1rem; /* 설명문 여백도 살짝 줄이기 */
-  font-size: 1.3rem;
-}
   transform: translateY(-2px);
 }
