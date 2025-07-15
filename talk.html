@@ -63,6 +63,7 @@
     const db = firebase.firestore();
 
     /* Netlify Identity */
+      netlifyIdentity.setIdentityUrl('https://wandupod.netlify.app');   <!-- ★ 추가! -->
     netlifyIdentity.init();
     const $chat   = document.getElementById('chat');
     const $msg    = document.getElementById('msg');
