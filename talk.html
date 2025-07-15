@@ -16,6 +16,32 @@
   <section style="max-width:900px;margin:0 auto;padding:2rem;">
     <p><strong>톡톡, 콩알말</strong>은 실시간으로 소통하는 공간입니다!</p>
     <ul id="chat-list"></ul>
+    <!-- 채팅 입력창·전송 버튼 -->
+<form id="sendForm" style="max-width:900px;margin:1rem auto;display:flex;gap:.5rem">
+  <input id="msgBox" placeholder="메시지 입력…" style="flex:1;padding:.6rem;border-radius:6px;border:1px solid #ccc">
+  <button style="padding:.6rem 1rem;border:none;border-radius:6px;background:#3b6040;color:#fff">전송</button>
+</form>
+
+<script>
+/* --- 기존 코드(읽기) 아래에 이어서 --- */
+
+// ① 임시 닉네임 만들기 (페이지 새로 들어올 때마다!)
+const nick = `콩알${Math.floor(Math.random()*9000+1000)}`;
+
+// ② 전송 이벤트
+document.getElementById('sendForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const text = document.getElementById('msgBox').value.trim();
+  if(text){
+    db.collection('messages').add({
+      userId: nick,
+      message: text,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    document.getElementById('msgBox').value = '';
+  }
+});
+</script>
   </section>
 
   <footer><a href="index.html">← 메인으로</a></footer>
