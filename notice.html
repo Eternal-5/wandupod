@@ -7,19 +7,15 @@
 <link rel="stylesheet" href="style.css"/></head>
 <body>
 <header><h1>깍지 공지방</h1></header>
-  <!-- ▼ 네비게이션 바 -------------------------------->
-<nav style="
-  display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;
-  margin:1rem 0;font-size:1.15rem;">
-  <a href="review.html"  title="공연 감상 후기를 남기는 공간이에요"              class="nav">콩 한 톨 감상기</a>
-  <a href="share.html"   title="이미지, 영상, 기사 등 자료를 공유해요"           class="nav">깍지 속 기록들</a>
-  <a href="request.html" title="찾고 싶은 자료를 요청하는 공간이에요"            class="nav">콩깍지 레이더</a>
-  <a href="memory.html"  title="팬으로서의 추억과 마음을 나눠요"                class="nav">완두밭 이야기</a>
-  <a href="talk.html"    title="자유롭게 소통하고 이야기 나누어요"              class="nav">톡톡, 콩알말</a>
-  <a href="notice.html"  title="팬페이지의 공지사항을 모아둔 곳이에요"          class="nav">깍지 공지방</a>
-  <a href="inbox.html"   title="건의나 궁금한 점을 익명으로 남겨주세요"         class="nav">콩깍지 우체통</a>
-  <a href="archive.html" title="SS501의 시간들을 함께 모아가는 조용한 아카이브 공간입니다" class="nav">다섯 별 아카이브</a>
-</nav>
+<!-- 네비게이션 컨테이너 -->
+<div id="nav"></div>
+
+<!-- nav.html을 동적으로 삽입 -->
+<script>
+  fetch("nav.html")
+    .then(res => res.text())
+    .then(html => document.getElementById("nav").innerHTML = html);
+</script>
 
 <section style="max-width:900px;margin:0 auto;padding:2rem;">
 <p>이 페이지는 <strong>깍지 공지방</strong> 콘텐츠를 채우기 위한 템플릿입니다.</p>
