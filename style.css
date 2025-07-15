@@ -52,5 +52,14 @@ nav .nav {
 }
 nav .nav:hover {
   background: #c3f5d0;
+
+  body.board header {
+  padding: 1.2rem 1rem; /* 게시판에서는 상하 여백 줄이기 */
+}
+
+body.board header + p {
+  margin-bottom: 1rem; /* 설명문 여백도 살짝 줄이기 */
+  font-size: 1.3rem;
+}
   transform: translateY(-2px);
 }
