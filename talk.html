@@ -15,10 +15,10 @@
 </head>
 
 <body class="board">
-  <!-- 상단 배너 -->
+  <!-- 🫛 완두콩깍지 상단 로고 배너 -->
   <div style="background:#f4fdf6; padding:1rem; text-align:center;">
     <a href="index.html" style="text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem;">
-      <img src="img/wandupod-logo.png" alt="완두콩깍지 로고" style="height:40px;"/>
+      <img src="img/wandupod-logo.png" alt="완두콩깍지 로고" style="height:40px;" />
       <span style="font-size:1.8rem; color:#3b6040; font-weight:bold;">완두콩깍지</span>
     </a>
   </div>
@@ -33,7 +33,7 @@
   <header><h1>🗨️톡톡, 콩알말</h1></header>
   <p style="text-align:center;font-size:1.4rem;">자유롭게 소통하고 이야기 나누어요!</p>
 
-  <!-- 네비게이션: nav.html 동적 삽입 -->
+  <!-- 네비게이션 -->
   <div id="nav"></div>
   <script>
     fetch("nav.html")
@@ -54,7 +54,7 @@
     </button>
   </form>
 
-  <!-- Firebase 채팅 스크립트 -->
+  <!-- Firebase 스크립트 -->
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyCpUti20pb1a5qAMvCqWh3FJpn7MDDb8",
@@ -65,12 +65,11 @@
       appId: "1:896164102070:web:6c3a477d1abcbb5c040b17"
     };
     firebase.initializeApp(firebaseConfig);
-    const db   = firebase.firestore();
+    const db = firebase.firestore();
     const $chat = document.getElementById('chat');
-    const $msg  = document.getElementById('msg');
+    const $msg = document.getElementById('msg');
     const $form = document.getElementById('send');
 
-    /* 실시간 메시지 렌더링 */
     db.collection('messages').orderBy('timestamp')
       .onSnapshot(snap => {
         $chat.innerHTML = '';
@@ -87,7 +86,6 @@
         $chat.scrollTop = $chat.scrollHeight;
       });
 
-    /* 메시지 전송 */
     $form.addEventListener('submit', e => {
       e.preventDefault();
       if (!$msg.value.trim()) return;
