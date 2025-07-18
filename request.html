@@ -21,21 +21,173 @@
 <section style="max-width:900px;margin:0 auto;padding:2rem;">
 <p>이 페이지는 <strong>콩깍지 레이더</strong> 콘텐츠를 채우기 위한 템플릿입니다.</p>
 <p>HTML을 수정하여 실제 내용을 넣어보세요!</p>
+
+<section style="max-width:900px;margin:0 auto;padding:2rem;">
+  <h2 style="margin-bottom:1rem;">글쓰기 ✏️</h2>
+  <form id="postForm" style="display:flex; flex-direction:column; gap:1rem;">
+    <label>
+      말머리:
+      <select name="tag" required>
+        <option value="">선택하세요</option>
+        <option value="[신고]">[신고]</option>
+<option value="[등업요청]">[등업요청]</option>
+<option value="[문의]">[문의]</option>
+<option value="[건의]">[건의]</option>
+      </select>
+    </label>
+    <label>
+      제목:
+      <input type="text" name="title" required style="width:100%; padding:0.5rem;" />
+    </label>
+    <label>
+      내용:
+      <textarea name="content" rows="6" required style="width:100%; padding:0.5rem;"></textarea>
+    </label>
+    <button type="submit" style="padding:0.6rem; background:#3b6040; color:#fff; border:none; border-radius:4px; font-size:1rem;">
+      글 등록하기
+    </button>
+  </form>
+
+<section style="max-width:900px;margin:0 auto;padding:2rem;">
+  <h2 style="margin-bottom:1rem;">게시글 목록 📚</h2>
+  <input type="text" id="searchInput" placeholder="검색어를 입력하세요" 
+         style="width:100%; padding:0.6rem; margin-bottom:1rem; border:1px solid #ccc; border-radius:4px;" />
+  <ul id="postList" style="list-style:none; padding:0;"></ul>
+
+<section style="max-width:900px;margin:0 auto;padding:2rem;">
+  <h2 style="margin-bottom:1rem;">우체통 글쓰기 ✏️</h2>
+  <form id="postForm" style="display:flex; flex-direction:column; gap:1rem;">
+    <label>
+      말머리:
+      <select name="tag" required>
+        <option value="">선택하세요</option>
+        <option value="[신고]">[신고]</option>
+        <option value="[등업요청]">[등업요청]</option>
+        <option value="[문의]">[문의]</option>
+        <option value="[건의]">[건의]</option>
+      </select>
+    </label>
+    <label>
+      제목:
+      <input type="text" name="title" required style="width:100%; padding:0.5rem;" />
+    </label>
+    <label>
+      내용:
+      <textarea name="content" rows="6" required style="width:100%; padding:0.5rem;"></textarea>
+    </label>
+    <button type="submit" style="padding:0.6rem; background:#3b6040; color:#fff; border:none; border-radius:4px; font-size:1rem;">
+      글 등록하기
+    </button>
+  </form>
+
+<section style="max-width:900px;margin:0 auto;padding:2rem;">
+  <h2 style="margin-bottom:1rem;">글쓰기 ✏️</h2>
+  <form id="postForm" style="display:flex; flex-direction:column; gap:1rem;">
+    <label>
+      말머리:
+      <select name="tag" required>
+        <option value="">선택하세요</option>
+        <option value="[신고]">[신고]</option>
+<option value="[등업요청]">[등업요청]</option>
+<option value="[문의]">[문의]</option>
+<option value="[건의]">[건의]</option>
+      </select>
+    </label>
+    <label>
+      제목:
+      <input type="text" name="title" required style="width:100%; padding:0.5rem;" />
+    </label>
+    <label>
+      내용:
+      <textarea name="content" rows="6" required style="width:100%; padding:0.5rem;"></textarea>
+    </label>
+    <button type="submit" style="padding:0.6rem; background:#3b6040; color:#fff; border:none; border-radius:4px; font-size:1rem;">
+      글 등록하기
+    </button>
+  </form>
+
+<div id="searchContainer" style="margin:2rem 0; display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center;">
+  <input type="text" id="searchInput" placeholder="검색어 입력..." style="flex:1; padding:0.5rem; font-size:1rem;" />
+  <select id="searchScope" style="padding:0.5rem;">
+    <option value="title">제목</option>
+    <option value="content">내용</option>
+    <option value="both">제목+내용</option>
+  </select>
+  <button id="searchButton" style="padding:0.6rem 1rem; background:#3b6040; color:#fff; border:none; border-radius:4px; font-size:1rem;">
+    검색
+  </button>
+</div>
+
+<div id="postList"></div>
 </section>
-<footer style="margin-top:2rem; text-align:center;">
-  <a href="index.html"
-     style="display:inline-block; padding:.6rem 1.2rem;
-            background:#3b6040; color:#fff; border-radius:6px;
-            text-decoration:none; font-size:1.2rem;">
-    ← 메인으로
-  </a>
-</footer>
-<script>document.querySelectorAll('.card').forEach(card=>{
-  card.addEventListener('click',e=>{
-    if(card.classList.contains('show')){card.classList.remove('show');return;}
-    document.querySelectorAll('.card.show').forEach(c=>c.classList.remove('show'));
-    card.classList.add('show');
-    e.preventDefault();
-  });
-});</script>
-</body></html>
+
+<div id="searchContainer" style="margin:2rem 0; display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center;">
+  <input type="text" id="searchInput" placeholder="검색어 입력..." style="flex:1; padding:0.5rem; font-size:1rem;" />
+  <select id="searchScope" style="padding:0.5rem;">
+    <option value="title">제목</option>
+    <option value="content">내용</option>
+    <option value="both">제목+내용</option>
+  </select>
+  <button id="searchButton" style="padding:0.6rem 1rem; background:#3b6040; color:#fff; border:none; border-radius:4px; font-size:1rem;">
+    검색
+  </button>
+</div>
+
+<div id="postList"></div>
+</section>
+
+<section style="max-width:900px;margin:0 auto;padding:2rem;">
+  <h2 style="margin-bottom:1rem;">글쓰기 ✏️</h2>
+  <form id="postForm" style="display:flex; flex-direction:column; gap:1rem;">
+    <label>
+      말머리:
+      <select name="tag" required>
+        <option value="">선택하세요</option>
+        <option value="[신고]">[신고]</option>
+<option value="[등업요청]">[등업요청]</option>
+<option value="[문의]">[문의]</option>
+<option value="[건의]">[건의]</option>
+      </select>
+    </label>
+    <label>
+      제목:
+      <input type="text" name="title" required style="width:100%; padding:0.5rem;" />
+    </label>
+    <label>
+      내용:
+      <textarea name="content" rows="6" required style="width:100%; padding:0.5rem;"></textarea>
+    </label>
+    <button type="submit" style="padding:0.6rem; background:#3b6040; color:#fff; border:none; border-radius:4px; font-size:1rem;">
+      글 등록하기
+    </button>
+  </form>
+
+<div id="searchContainer" style="margin:2rem 0; display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center;">
+  <input type="text" id="searchInput" placeholder="검색어 입력..." style="flex:1; padding:0.5rem; font-size:1rem;" />
+  <select id="searchScope" style="padding:0.5rem;">
+    <option value="title">제목</option>
+    <option value="content">내용</option>
+    <option value="both">제목+내용</option>
+  </select>
+  <button id="searchButton" style="padding:0.6rem 1rem; background:#3b6040; color:#fff; border:none; border-radius:4px; font-size:1rem;">
+    검색
+  </button>
+</div>
+
+<div id="postList"></div>
+</section>
+
+<div id="searchContainer" style="margin:2rem 0; display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center;">
+  <input type="text" id="searchInput" placeholder="검색어 입력..." style="flex:1; padding:0.5rem; font-size:1rem;" />
+  <select id="searchScope" style="padding:0.5rem;">
+    <option value="title">제목</option>
+    <option value="content">내용</option>
+    <option value="both">제목+내용</option>
+  </select>
+  <button id="searchButton" style="padding:0.6rem 1rem; background:#3b6040; color:#fff; border:none; border-radius:4px; font-size:1rem;">
+    검색
+  </button>
+</div>
+
+<div id="postList"></div>
+</section>
