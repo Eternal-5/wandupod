@@ -2,37 +2,145 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>완두콩깍지</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Dongle', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4fdf6;
+      color: #2e3e2e;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem 0.5rem;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+      color: #3b6040;
+    }
+
+    header h2 {
+      font-size: 1.8rem;
+      font-weight: normal;
+      margin: 0.2rem 0 1.5rem;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 2px solid #d0e8d8;
+      border-radius: 8px;
+      padding: 1.2rem;
+      font-size: 1.4rem;
+      text-align: center;
+      text-decoration: none;
+      color: #3b6040;
+      position: relative;
+      transition: background 0.2s;
+    }
+
+    .card:hover {
+      background: #e8f9ef;
+    }
+
+    .tooltip {
+      visibility: hidden;
+      opacity: 0;
+      width: max-content;
+      background-color: #3b6040;
+      color: #fff;
+      text-align: center;
+      border-radius: 4px;
+      padding: 0.3rem 0.6rem;
+      font-size: 1.2rem;
+      position: absolute;
+      bottom: -2.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: opacity 0.3s ease;
+      z-index: 10;
+      white-space: nowrap;
+    }
+
+    .card:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 1.2rem;
+      padding: 2rem 1rem;
+      color: #555;
+    }
+
+    @media screen and (max-width: 768px) {
+      .menu {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
 </head>
-<body class="board">
+<body>
 
-  <!-- 🎉 메인 인삿말 -->
   <header>
-    <h1>🫛완두콩깍지</h1>
+    <h1>🫛 완두콩깍지</h1>
+    <h2>SS501 팬들을 위한 복작복작 콩깍지</h2>
   </header>
-  <p style="text-align:center; font-size:1.4rem;">SS501 팬들을 위한 복작복작 콩깍지</p>
 
-  <!-- 📌 게시판 카드 목록 -->
-  <section style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1.5rem; max-width:900px; margin:2rem auto;">
-    <a href="review.html" title="공연 감상 후기를 남기는 공간이에요" class="card">콩 한 톨 감상기</a>
-    <a href="record.html" title="이미지, 영상, 기사 등 자료를 공유해요" class="card">깍지 속 기록들</a>
-    <a href="share.html" title="찾고 싶은 자료를 요청하는 공간이에요" class="card">콩깍지 레이더</a>
-    <a href="memory.html" title="팬으로서의 추억과 마음을 나눠요" class="card">완두밭 이야기</a>
-    <a href="talk.html" title="자유롭게 소통하고 이야기 나누어요" class="card">톡톡, 콩알말</a>
-    <a href="notice.html" title="팬페이지의 공지사항을 모아둔 곳이에요" class="card">깍지 공지방</a>
-    <a href="inbox.html" title="건의나 궁금한 점을 익명으로 남겨주세요" class="card">콩깍지 우체통</a>
-    <a href="archive.html" title="SS501의 시간들을 함께 모아가는 조용한 아카이브 공간입니다" class="card">다섯 별 아카이브</a>
+  <section class="menu">
+    <a class="card" href="review.html">
+      <span>콩 한 톨 감상기</span>
+      <span class="tooltip">공연 감상 후기를 남기는 공간이에요</span>
+    </a>
+    <a class="card" href="record.html">
+      <span>깍지 속 기록들</span>
+      <span class="tooltip">이미지, 영상, 기사 등 자료를 공유해요</span>
+    </a>
+    <a class="card" href="share.html">
+      <span>콩깍지 레이더</span>
+      <span class="tooltip">찾고 싶은 자료를 요청하는 공간이에요</span>
+    </a>
+    <a class="card" href="memory.html">
+      <span>완두밭 이야기</span>
+      <span class="tooltip">팬으로서의 추억과 마음을 나눠요</span>
+    </a>
+    <a class="card" href="talk.html">
+      <span>톡톡, 콩알말</span>
+      <span class="tooltip">자유롭게 소통하고 이야기 나누어요</span>
+    </a>
+    <a class="card" href="notice.html">
+      <span>깍지 공지방</span>
+      <span class="tooltip">팬페이지의 공지사항을 모아둔 곳이에요</span>
+    </a>
+    <a class="card" href="inbox.html">
+      <span>콩깍지 우체통</span>
+      <span class="tooltip">건의나 궁금한 점을 익명으로 남겨주세요</span>
+    </a>
+    <a class="card" href="archive.html">
+      <span>다섯 별 아카이브</span>
+      <span class="tooltip">SS501의 시간들을 함께 모아가는 조용한 아카이브 공간입니다</span>
+    </a>
   </section>
 
-  <!-- 네비게이션 (숨김 처리) -->
-  <div id="nav" style="display:none;"></div>
-  <script>
-    fetch("nav.html")
-      .then(res => res.text())
-      .then(html => document.getElementById("nav").innerHTML = html);
-  </script>
+  <footer>
+    wandupod.com | 완두콩깍지.com
+  </footer>
 
 </body>
 </html>
