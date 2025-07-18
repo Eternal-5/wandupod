@@ -1,55 +1,49 @@
-
 <!DOCTYPE html>
 <html lang="ko">
-<head><meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>깍지 공지방 - 완두콩깍지</title>
-<link rel="stylesheet" href="style.css"/></head>
-<body>
-<div style="background:#f4fdf6; padding:1rem; text-align:center;">
-  <a href="index.html" style="text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem;">
-    <img src="img/wandupod-logo.png" alt="완두콩깍지 로고" style="height:40px;"/>
-    <span style="font-size:1.8rem; color:#3b6040; font-weight:bold;">완두콩깍지</span>
-  </a>
-</div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>깍지 공지방 - 완두콩깍지</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="board">
+  <!-- 🫛 완두콩깍지 메인 배너 -->
+  <div style="text-align:center; padding:1.2rem 0; background:#f0fbf4;">
+    <a href="index.html" style="text-decoration:none;">
+      <img src="img/wandupod-logo.png" alt="완두콩깍지 로고" style="height:60px;" />
+    </a>
+  </div>
 
-<!-- 🫛 완두콩깍지 메인 배너 -->
-<div style="text-align:center; padding:1.2rem 0; background:#f0fbf4;">
-  <a href="index.html" style="text-decoration:none;">
-    <img src="img/wandupod-logo.png" alt="완두콩깍지 로고" style="height:60px;" />
-  </a>
-</div>
- class="board">
-<header><h1>📢깍지 공지방</h1></header>
-    <p style="text-align:center; font-size:1.4rem;">팬페이지의 공지사항을 모아둔 곳이에요</p>
-<!-- 네비게이션 컨테이너 -->
-<div id="nav"></div>
+  <header><h1>📢깍지 공지방</h1></header>
+  <p style="text-align:center; font-size:1.4rem;">팬페이지의 공지사항을 모아둔 곳이에요</p>
 
-<!-- nav.html을 동적으로 삽입 -->
-<script>
-  fetch("nav.html")
-    .then(res => res.text())
-    .then(html => document.getElementById("nav").innerHTML = html);
-</script>
+  <!-- 네비게이션 컨테이너 -->
+  <div id="nav"></div>
 
-<section style="max-width:900px;margin:0 auto;padding:2rem;">
-<p>이 페이지는 <strong>깍지 공지방</strong> 콘텐츠를 채우기 위한 템플릿입니다.</p>
-<p>HTML을 수정하여 실제 내용을 넣어보세요!</p>
-</section>
-<footer style="margin-top:2rem; text-align:center;">
-  <a href="index.html"
-     style="display:inline-block; padding:.6rem 1.2rem;
-            background:#3b6040; color:#fff; border-radius:6px;
-            text-decoration:none; font-size:1.2rem;">
-    ← 메인으로
-  </a>
-</footer>
-<script>document.querySelectorAll('.card').forEach(card=>{
-  card.addEventListener('click',e=>{
-    if(card.classList.contains('show')){card.classList.remove('show');return;}
-    document.querySelectorAll('.card.show').forEach(c=>c.classList.remove('show'));
-    card.classList.add('show');
-    e.preventDefault();
-  });
-});</script>
-</body></html>
+  <!-- nav.html을 동적으로 삽입 -->
+  <script>
+    fetch("nav.html")
+      .then(res => res.text())
+      .then(html => document.getElementById("nav").innerHTML = html);
+  </script>
+
+  <section style="max-width:900px;margin:0 auto;padding:2rem;">
+    <p>이 페이지는 <strong>깍지 공지방</strong> 콘텐츠를 채우기 위한 템플릿입니다.</p>
+    <p>HTML을 수정하여 실제 내용을 넣어보세요!</p>
+  </section>
+
+  <script>
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', e => {
+        if (card.classList.contains('show')) {
+          card.classList.remove('show');
+          return;
+        }
+        document.querySelectorAll('.card.show').forEach(c => c.classList.remove('show'));
+        card.classList.add('show');
+        e.preventDefault();
+      });
+    });
+  </script>
+</body>
+</html>
