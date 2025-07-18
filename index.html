@@ -1,58 +1,46 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>완두콩깍지</title>
-<link rel="stylesheet" href="style.css"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>완두콩깍지</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="board">
 
-<header>
- <h1>🫛 완두콩깍지</h1>
- <h2>SS501 팬들을 위한 복작복작 콩깍지</h2>
-</header>
+  <!-- 🫛 상단 로고/배너 -->
+  <div style="background:#f4fdf6; padding:1rem; text-align:center;">
+    <a href="index.html" style="text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem;">
+      <img src="wandupod-logo.png" alt="완두콩깍지 로고" style="height:40px;" />
+      <span style="font-size:1.8rem; color:#3b6040; font-weight:bold;">완두콩깍지</span>
+    </a>
+  </div>
 
-<section class="menu">
-  <!-- 1행: 공지방 · 아카이브 · 완두밭 · 톡톡 -->
-  <a class="card" href="notice.html">
-    <span>깍지 공지방</span><span class="tooltip">공지사항들을 모아뒀어요</span>
-  </a>
-  <a class="card" href="archive.html">
-    <span>다섯별 아카이브</span><span class="tooltip">SS501 시간들을 함께 모아가요</span>
-  </a>
-  <a class="card" href="memory.html">
-    <span>완두밭 이야기</span><span class="tooltip">추억과 마음을 나눠요</span>
-  </a>
-  <a class="card" href="talk.html">
-    <span>톡톡, 콩알말</span><span class="tooltip">자유롭게 소통하고 이야기 나누어요</span>
-  </a>
+  <!-- 추가 배너 -->
+  <div style="text-align:center; padding:1.2rem 0; background:#f0fbf4;">
+    <a href="index.html" style="text-decoration:none;">
+      <img src="wandupod-logo.png" alt="완두콩깍지 로고" style="height:60px;" />
+    </a>
+  </div>
 
-  <!-- 2행: 감상기 · 기록들 · 레이더 · 우체통 -->
-  <a class="card" href="review.html">
-    <span>콩 한 톨 감상기</span><span class="tooltip">공연 감상 후기를 남기는 공간이에요</span>
-  </a>
-  <a class="card" href="share.html">
-    <span>깍지 속 기록들</span><span class="tooltip">이미지·영상 등 자료를 공유해요</span>
-  </a>
-  <a class="card" href="request.html">
-    <span>콩깍지 레이더</span><span class="tooltip">찾고 싶은 자료를 요청하는 공간이에요</span>
-  </a>
-  <a class="card" href="inbox.html">
-    <span>콩깍지 우체통</span><span class="tooltip">건의나 궁금한 점을 남겨주세요</span>
-  </a>
-</section>
+  <!-- 메인 타이틀 -->
+  <header>
+    <h1>🌱완두콩깍지</h1>
+  </header>
+  <p style="text-align:center; font-size:1.4rem;">완두콩처럼 소중하고 따뜻한 마음을 모아요</p>
 
-<footer>wandupod.com | 완두콩깍지.com</footer>
-<script>
-document.querySelectorAll('.card').forEach(card=>{
-  card.addEventListener('click',e=>{
-    if(card.classList.contains('show')){card.classList.remove('show');return;}
-    document.querySelectorAll('.card.show').forEach(c=>c.classList.remove('show'));
-    card.classList.add('show');
-    e.preventDefault();
-  });
-});
-</script>
+  <!-- 네비게이션 삽입 -->
+  <div id="nav"></div>
+  <script>
+    fetch("nav.html")
+      .then(res => res.text())
+      .then(html => document.getElementById("nav").innerHTML = html);
+  </script>
+
+  <!-- 메인 콘텐츠 (필요 시 추가) -->
+  <section style="max-width:900px;margin:0 auto;padding:2rem;">
+    <p style="text-align:center;">반가워요! 완두콩깍지에 오신 걸 환영해요 🌱</p>
+  </section>
+
 </body>
 </html>
