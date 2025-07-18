@@ -1,55 +1,99 @@
-
 <!DOCTYPE html>
 <html lang="ko">
-<head><meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>콩깍지 우체통 - 완두콩깍지</title>
-<link rel="stylesheet" href="style.css"/></head>
-<body>
-<div style="background:#f4fdf6; padding:1rem; text-align:center;">
-  <a href="index.html" style="text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem;">
-    <img src="img/wandupod-logo.png" alt="완두콩깍지 로고" style="height:40px;"/>
-    <span style="font-size:1.8rem; color:#3b6040; font-weight:bold;">완두콩깍지</span>
-  </a>
-</div>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>콩깍지 우체통 - 완두콩깍지</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body class="board">
+  <!-- 상단 로고 -->
+  <div style="background:#f4fdf6; padding:1rem; text-align:center;">
+    <a href="index.html" style="text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem;">
+      <img src="img/wandupod-logo.png" alt="완두콩깍지 로고" style="height:40px;"/>
+      <span style="font-size:1.8rem; color:#3b6040; font-weight:bold;">완두콩깍지</span>
+    </a>
+  </div>
 
-<!-- 🫛 완두콩깍지 메인 배너 -->
-<div style="text-align:center; padding:1.2rem 0; background:#f0fbf4;">
-  <a href="index.html" style="text-decoration:none;">
-    <img src="img/wandupod-logo.png" alt="완두콩깍지 로고" style="height:60px;" />
-  </a>
-</div>
- class="board">
-<header><h1>📮콩깍지 우체통</h1></header>
-   <p style="text-align:center; font-size:1.4rem;">건의나 궁금한 점을 익명으로 남겨주세요</p>
- <!-- 네비게이션 컨테이너 -->
-<div id="nav"></div>
+  <!-- 메인 배너 -->
+  <div style="text-align:center; padding:1.2rem 0; background:#f0fbf4;">
+    <a href="index.html" style="text-decoration:none;">
+      <img src="img/wandupod-logo.png" alt="완두콩깍지 로고" style="height:60px;" />
+    </a>
+  </div>
 
-<!-- nav.html을 동적으로 삽입 -->
-<script>
-  fetch("nav.html")
-    .then(res => res.text())
-    .then(html => document.getElementById("nav").innerHTML = html);
-</script>
+  <header><h1>📮 콩깍지 우체통</h1></header>
+  <p style="text-align:center; font-size:1.4rem;">건의나 궁금한 점을 익명으로 남겨주세요</p>
 
-<section style="max-width:900px;margin:0 auto;padding:2rem;">
-<p>이 페이지는 <strong>콩깍지 우체통</strong> 콘텐츠를 채우기 위한 템플릿입니다.</p>
-<p>HTML을 수정하여 실제 내용을 넣어보세요!</p>
-</section>
-<footer style="margin-top:2rem; text-align:center;">
-  <a href="index.html"
-     style="display:inline-block; padding:.6rem 1.2rem;
-            background:#3b6040; color:#fff; border-radius:6px;
-            text-decoration:none; font-size:1.2rem;">
-    ← 메인으로
-  </a>
-</footer>
-<script>document.querySelectorAll('.card').forEach(card=>{
-  card.addEventListener('click',e=>{
-    if(card.classList.contains('show')){card.classList.remove('show');return;}
-    document.querySelectorAll('.card.show').forEach(c=>c.classList.remove('show'));
-    card.classList.add('show');
-    e.preventDefault();
-  });
-});</script>
-</body></html>
+  <!-- 네비게이션 -->
+  <div id="nav"></div>
+  <script>
+    fetch("nav.html")
+      .then(res => res.text())
+      .then(html => document.getElementById("nav").innerHTML = html);
+  </script>
+
+  <section style="max-width:900px;margin:0 auto;padding:2rem;">
+    <!-- 글쓰기 버튼 -->
+    <button id="toggleForm" style="padding:0.6rem 1rem; background:#3b6040; color:#fff; border:none; border-radius:4px; font-size:1rem;">
+      ✍️ 글 남기기
+    </button>
+
+    <!-- 글쓰기 폼 -->
+    <div id="formContainer" style="display:none; margin-top:1rem;">
+      <form id="postForm" style="display:flex; flex-direction:column; gap:1rem;">
+        <label>
+          말머리:
+          <select name="tag" required>
+            <option value="">선택하세요</option>
+            <option value="[등업요청]">[등업요청]</option>
+            <option value="[문의]">[문의]</option>
+            <option value="[건의]">[건의]</option>
+            <option value="[기타]">[기타]</option>
+          </select>
+        </label>
+        <label>
+          제목:
+          <input type="text" name="title" required style="width:100%; padding:0.5rem;" />
+        </label>
+        <label>
+          내용:
+          <textarea name="content" rows="6" required style="width:100%; padding:0.5rem;"></textarea>
+        </label>
+        <button type="submit" style="padding:0.6rem; background:#3b6040; color:#fff; border:none; border-radius:4px; font-size:1rem;">
+          글 등록하기
+        </button>
+      </form>
+    </div>
+
+    <!-- 검색창 -->
+    <div id="searchContainer" style="margin:2rem 0; display:flex; flex-wrap:wrap; gap:0.5rem; align-items:center;">
+      <input type="text" id="searchInput" placeholder="검색어 입력..." style="flex:1; padding:0.5rem; font-size:1rem;" />
+      <select id="searchScope" style="padding:0.5rem;">
+        <option value="title">제목</option>
+        <option value="content">내용</option>
+        <option value="both">제목+내용</option>
+      </select>
+      <button id="searchButton" style="padding:0.6rem 1rem; background:#3b6040; color:#fff; border:none; border-radius:4px; font-size:1rem;">
+        검색
+      </button>
+    </div>
+
+    <!-- 게시글 목록 -->
+    <div id="postList"></div>
+  </section>
+
+  <!-- 글쓰기 폼 토글 스크립트 -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggleBtn = document.getElementById("toggleForm");
+      const formContainer = document.getElementById("formContainer");
+      if (toggleBtn && formContainer) {
+        toggleBtn.addEventListener("click", () => {
+          formContainer.style.display = formContainer.style.display === "none" ? "block" : "none";
+        });
+      }
+    });
+  </script>
+</body>
+</html>
